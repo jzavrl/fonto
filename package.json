@@ -1,0 +1,26 @@
+{
+  "name": "fonto",
+  "version": "0.1.0",
+  "description": "Font management app.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "TBD"
+  },
+  "keywords": [
+    "font",
+    "fonts",
+    "management",
+    "app",
+    "google",
+    "fonts"
+  ],
+  "author": "Jan Zavrl <jan.zavrl@agiledrop.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.2"
+  }
+}
