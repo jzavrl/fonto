@@ -1,0 +1,25 @@
+{
+  "messages": {
+    "error": {
+      "title": "Error",
+      "message": "Gulp reported error: <%= error.message %>!"
+    },
+    "success": {
+      "title": "Success",
+      "message": "Gulp tasks completed successfully!"
+    }
+  },
+  "scripts": {
+    "bundle": {
+      "source": "../source/bundle.js",
+      "destination": "../build/scripts"
+    },
+    "application": {
+      "source": "../source/application.js",
+      "modules": "../source/**/*.js",
+      "destination": "../build/scripts",
+      "sourcemaps": "../scripts",
+      "file": "application.js"
+    }
+  }
+}
