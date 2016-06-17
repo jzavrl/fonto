@@ -1,0 +1,53 @@
+<md-toolbar class="md-tall" ng-controller="ToolbarCtrl as vm">
+  <span flex></span>
+  <div class="md-toolbar-tools">
+    <h1>Browse fonts</h1>
+    <span flex></span>
+
+    <md-button class="md-icon-button" aria-label="Search">
+      <md-icon>&#xE8B6;</md-icon>
+      <md-tooltip>Search</md-tooltip>
+    </md-button>
+
+    <md-menu md-position-mode="target-right target">
+      <md-button class="md-icon-button" ng-click="vm.openMenu($mdOpenMenu, $event)">
+        <md-icon>&#xE164;</md-icon>
+        <md-tooltip>Sort</md-tooltip>
+      </md-button>
+      <md-menu-content width="3">
+        <md-menu-item>
+          <md-button>
+            <md-icon>&#xE053</md-icon>
+            Alphabetically
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+
+    <md-button class="md-icon-button" aria-label="Filter" ng-click="vm.toggleSidenav()">
+      <md-icon>&#xE152;</md-icon>
+      <md-tooltip>Filter</md-tooltip>
+    </md-button>
+
+    <md-menu md-position-mode="target-right target">
+      <md-button class="md-icon-button" ng-click="vm.openMenu($mdOpenMenu, $event)">
+        <md-icon>&#xE5D4;</md-icon>
+        <md-tooltip>More</md-tooltip>
+      </md-button>
+      <md-menu-content width="3">
+        <md-menu-item>
+          <md-button>
+            <md-icon>&#xE8B8;</md-icon>
+            Settings
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button>
+            <md-icon>&#xE87B;</md-icon>
+            Providers
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>

@@ -7,27 +7,13 @@
   <link rel="stylesheet" href="gulp/node_modules/angular-material/angular-material.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body ng-app="FontoApp" ng-cloak>
+<body ng-app="FontoApp" ng-cloak layout="column">
   <!-- Your application bootstrap  -->
   <script type="text/javascript">
     /**
      * You must include the dependency on 'ngMaterial'
      */
 
-//    var http = require('http');
-//    var fs = require('fs');
-//
-//    function download(url, dest) {
-//      var file = fs.createWriteStream(dest);
-//      var request = http.get(url, function(response) {
-//        response.pipe(file);
-//        file.on('finish', function() {
-//          file.close();  // close() is async, call cb after close completes.
-//        });
-//      }).on('error', function(err) { // Handle errors
-//        fs.unlink(dest); // Delete the file async. (But we don't check the result)
-//      });
-//    };
 
 //    var doc = {
 //      hello: 'world'
@@ -61,30 +47,17 @@
 
   </script>
 
-  <div ng-controller="FontoController as fonto">
-    <md-toolbar class="md-theme-light" md-scroll-shrink>
-      <h2 class="md-toolbar-tools">
-        <span>Fonts</span>
-      </h2>
-    </md-toolbar>
-    <md-content>
-      <md-list>
-        <md-list-item class="md-3-line" ng-repeat="font in fonto.families.items|limitTo:10">
-          <div class="md-list-item-text" ng-aria="{{ font.family }}">
-            <h3>{{ font.family }}</h3>
-          </div>
-          <md-button class="md-secondary md-raised" ng-click="fonto.click()">
-            <md-icon>favorite</md-icon>
-            Download
-          </md-button>
-          <md-progress-linear md-mode="indeterminate" ng-show="fonto.download"></md-progress-linear>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-      </md-list>
-    </md-content>
+
+  <div layout="row" flex>
+    <div layout="column" flex>
+      <fonto-toolbar></fonto-toolbar>
+      <md-content layout="column" flex>
+        <fonto-sidenav></fonto-sidenav>
+        <fonto-fonts></fonto-fonts>
+      </md-content>
+    </div>
   </div>
 
-  <script src="build/scripts/bundle.js"></script>
   <script src="build/scripts/application.js"></script>
 </body>
 </html>

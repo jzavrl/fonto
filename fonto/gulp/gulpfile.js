@@ -37,5 +37,5 @@ gulp.task('default', function() {
 
 // Gulp build task to run all tasks just once
 gulp.task('build', function() {
-	gulp.start('scripts', 'browserify');
+	gulp.start('scripts');
 });

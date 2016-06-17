@@ -10,10 +10,6 @@
     }
   },
   "scripts": {
-    "bundle": {
-      "source": "../source/bundle.js",
-      "destination": "../build/scripts"
-    },
     "application": {
       "source": "../source/application.js",
       "modules": "../source/**/*.js",
