@@ -1,15 +1,21 @@
 angular.module('FontoApp')
   .controller('FontoController', function(FontListSvc) {
-    var fonts = this;
-    fonts.families = [];
+    var vm = this;
 
-    fonts.size = 32;
+    vm.size = 32;
 
-    FontListSvc.loadFontAPI('google', function(data) {
-      fonts.families = data;
+    // FontListSvc.syncFonts('google');
+    var db = FontListSvc.loadFontDatabase();
+
+    db.find({}, function (error, fonts) {
+      vm.fonts = fonts;
     });
 
-    FontListSvc.saveFontToDatabase('family', function(data) {
-
-    });
+    // FontListSvc.loadFontAPI('google', function(data) {
+    //   fonts.families = data;
+    // });
+    //
+    // FontListSvc.saveFontToDatabase('family', function(data) {
+    //
+    // });
   });

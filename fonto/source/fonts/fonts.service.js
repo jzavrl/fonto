@@ -1,5 +1,5 @@
 angular.module('FontoApp')
-  .factory('FontListSvc', ['$log', '$http', function ($log, $http, FontListSvc) {
+  .factory('FontListSvc', ['$log', '$http', function ($log, $http) {
     return {
       loadFontAPI: function (service, callback) {
         if (service == 'google') {
@@ -45,16 +45,6 @@ angular.module('FontoApp')
         var self = this,
           database = self.loadFontDatabase();
 
-        var family = {
-          family: 'family',
-          category: 'category',
-          files: {},
-          last_modified: 'date',
-          subsets: {},
-          variants: {},
-          enabled: true,
-        }
-
         database.insert(family, function (error, record) {
           if (error) {
             callback(error);
@@ -66,7 +56,36 @@ angular.module('FontoApp')
 
       syncFonts: function (service) {
         var self = this;
+        var db = self.loadFontDatabase();
 
+        self.loadFontAPI(service, function (data) {
+          var fonts = data.items;
+
+          for (var i = 0; i < fonts.length; i++) {
+            // Set the new database structure
+            var family = {
+              family: fonts[i].family,
+              category: fonts[i].category,
+              files: fonts[i].files,
+              lastModified: fonts[i].lastModified,
+              subsets: fonts[i].subsets,
+              styles: {
+                count: fonts[i].variants.length,
+                styles: fonts[i].variants
+              },
+              enabled: false,
+              defaultSize: 32
+            };
+
+            db.update({
+              family: fonts[i].family
+            }, family, {
+              upsert: true
+            }, function (error, replaced) {
+
+            });
+          }
+        });
       },
 
       downloadFontFile: function (url, destination, callback) {
