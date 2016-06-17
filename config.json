@@ -11,10 +11,10 @@
   },
   "scripts": {
     "application": {
-      "source": "../source/application.js",
-      "modules": "../source/**/*.js",
-      "destination": "../build/scripts",
-      "sourcemaps": "../scripts",
+      "source": "fonto/source/application.js",
+      "modules": "fonto/source/**/*.js",
+      "destination": "fonto/build/scripts",
+      "sourcemaps": "./",
       "file": "application.js"
     }
   }

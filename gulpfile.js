@@ -28,7 +28,7 @@ var messages = {
 };
 
 // Load tasks from files
-$.loadSubtasks('tasks/*.js', $, config, messages);
+$.loadSubtasks('gulp/*.js', $, config, messages);
 
 // Default Gulp task to Run
 gulp.task('default', function() {
