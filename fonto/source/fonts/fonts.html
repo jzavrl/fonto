@@ -1,19 +1,20 @@
 <md-content layout-padding>
   <md-list ng-controller="FontoController as vm">
-    <md-list-item ng-repeat="font in vm.fonts.items|limitTo:10">
+    <md-progress-linear ng-disabled="!vm.loading" md-mode="indeterminate"></md-progress-linear>
+    <md-list-item ng-hide="vm.loading" ng-repeat="font in vm.fonts | limitTo:20 | orderBy:vm.family:true">
       <div layout="row" flex>
         <div class="md-list-item-text">
           <div layout="column">
             <div layout="column">
-              <p>{{ font.family }} <span class="md-caption">12 styles</span></p>
+              <p>{{ font.family }} <span class="md-caption">{{ font.styles.count }} styles</span></p>
               <span flex></span>
               <md-slider-container flex="30">
-                <md-slider flex min="12" max="72" value="{{ vm.size }}" ng-model="vm.size" aria-label="Set font size"></md-slider>
+                <md-slider flex min="12" max="72" value="{{ font.defaultSize }}" ng-model="font.defaultSize" aria-label="Set font size"></md-slider>
               </md-slider-container>
               <span flex></span>
               <md-switch ng-repeat="v in [0]"></md-switch>
             </div>
-            <h1 contenteditable="true" style="font-size: {{ vm.size }}px;">The quick brown fox jumps over the lazy dog</h1>
+            <h1 contenteditable="true" style="font-size: {{ font.defaultSize }}px;">The quick brown fox jumps over the lazy dog</h1>
           </div>
         </div>
       </div>

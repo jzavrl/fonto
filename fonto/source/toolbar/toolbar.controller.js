@@ -1,9 +1,11 @@
 angular.module('FontoApp')
-  .controller('ToolbarCtrl', function($scope, $mdSidenav) {
-    $scope.toggleSidenav = function() {
+  .controller('ToolbarCtrl', function($mdSidenav) {
+    var vm = this;
+
+    vm.toggleSidenav = function() {
       $mdSidenav('sidenav').toggle();
     };
-    $scope.openMenu = function($mdOpenMenu, event) {
+    vm.openMenu = function($mdOpenMenu, event) {
       $mdOpenMenu(event);
     };
   });

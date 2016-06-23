@@ -2,13 +2,18 @@ angular.module('FontoApp')
   .controller('FontoController', function(FontListSvc) {
     var vm = this;
 
-    vm.size = 32;
+    vm.fonts = {};
+    vm.loading = true;
 
-    // FontListSvc.syncFonts('google');
-    var db = FontListSvc.loadFontDatabase();
-
-    db.find({}, function (error, fonts) {
-      vm.fonts = fonts;
+    FontListSvc.loadFonts({}, function (promise) {
+      promise.then(function(fonts) {
+        vm.loading = false;
+        vm.fonts = fonts;
+      }, function(reason) {
+        vm.loading = true;
+      }, function(update) {
+        vm.loading = true;
+      });
     });
 
     // FontListSvc.loadFontAPI('google', function(data) {

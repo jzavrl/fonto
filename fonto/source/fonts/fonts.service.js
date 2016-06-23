@@ -1,9 +1,14 @@
 angular.module('FontoApp')
-  .factory('FontListSvc', ['$log', '$http', function ($log, $http) {
+  .factory('FontListSvc', ['$log', '$http', '$timeout', '$q', function ($log, $http, $timeout, $q) {
     return {
       loadFontAPI: function (service, callback) {
         if (service == 'google') {
-          $http.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDGavjqjIkNU4CV9DHosp0xXV8pJyEQLXk').success(function(data) {
+          var path = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDGavjqjIkNU4CV9DHosp0xXV8pJyEQLXk';
+
+          $http.get(path)
+            .then
+
+          $http.get(path).success(function(data) {
             callback(data);
           });
         } else {
@@ -26,31 +31,23 @@ angular.module('FontoApp')
         });
       },
 
-      getFontFromDatabase: function (family, callback) {
+      loadFonts: function (families, callback) {
         var self = this,
-          database = self.loadFontDatabase();
+          database = self.loadFontDatabase(),
+          deferred = $q.defer();
 
-        database.findOne({
-          family: family
-        }, function (error, matches) {
-          if (error) {
-            callback(error);
-          } else {
-            callback(matches);
-          }
-        });
-      },
+        database.find(families, function (error, matches) {
+          setTimeout(function() {
+            deferred.notify('Starting.');
 
-      saveFontToDatabase: function (family, callback) {
-        var self = this,
-          database = self.loadFontDatabase();
+            if (error) {
+              deferred.reject('Error.');
+            } else {
+              deferred.resolve(matches);
+            }
+          }, 1000);
 
-        database.insert(family, function (error, record) {
-          if (error) {
-            callback(error);
-          } else {
-            callback(record);
-          }
+          callback(deferred.promise);
         });
       },
 
