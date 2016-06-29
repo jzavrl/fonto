@@ -14,11 +14,23 @@
         <md-icon>&#xE164;</md-icon>
         <md-tooltip>Sort</md-tooltip>
       </md-button>
-      <md-menu-content width="3">
-        <md-menu-item>
+      <md-menu-content width="4">
+        <md-menu-item ng-click="vm.toggleSort('family')">
           <md-button>
-            <md-icon>&#xE053</md-icon>
-            Alphabetically
+            <div layout="row" flex>
+              <md-icon>&#xE8D5</md-icon>
+              <p flex>Family</p>
+              <md-icon ng-show="vm.currentSort.type == 'family' ? true : false">&#xE876</md-icon>
+            </div>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item ng-click="vm.toggleSort('styles.count')">
+          <md-button>
+            <div layout="row" flex>
+              <md-icon>&#xE8D5</md-icon>
+              <p flex>Styles</p>
+              <md-icon ng-show="vm.currentSort.type == 'styles.count' ? true : false">&#xE876</md-icon>
+            </div>
           </md-button>
         </md-menu-item>
       </md-menu-content>

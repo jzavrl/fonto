@@ -1,5 +1,10 @@
 angular.module('FontoApp')
   .factory('FontListSvc', ['$log', '$http', '$timeout', '$q', function ($log, $http, $timeout, $q) {
+    var sort = {
+      type: 'family',
+      direction: true
+    };
+
     return {
       loadFontAPI: function (service, callback) {
         if (service == 'google') {
@@ -37,7 +42,7 @@ angular.module('FontoApp')
           deferred = $q.defer();
 
         database.find(families, function (error, matches) {
-          setTimeout(function() {
+          // setTimeout(function() {
             deferred.notify('Starting.');
 
             if (error) {
@@ -45,7 +50,7 @@ angular.module('FontoApp')
             } else {
               deferred.resolve(matches);
             }
-          }, 1000);
+          // }, 1000);
 
           callback(deferred.promise);
         });
@@ -83,6 +88,20 @@ angular.module('FontoApp')
             });
           }
         });
+      },
+
+      setFontSort: function (type) {
+        if (sort.type == type) {
+          sort.direction = !sort.direction;
+        }
+        else {
+          sort.direction = true;
+        }
+        sort.type = type;
+      },
+
+      getFontSort: function () {
+        return sort;
       },
 
       downloadFontFile: function (url, destination, callback) {

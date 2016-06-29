@@ -1,5 +1,5 @@
 angular.module('FontoApp')
-  .controller('ToolbarCtrl', function($mdSidenav) {
+  .controller('ToolbarCtrl', function($mdSidenav, FontListSvc) {
     var vm = this;
 
     vm.toggleSidenav = function() {
@@ -8,4 +8,8 @@ angular.module('FontoApp')
     vm.openMenu = function($mdOpenMenu, event) {
       $mdOpenMenu(event);
     };
+    vm.toggleSort = function(type) {
+      FontListSvc.setFontSort(type);
+    };
+    vm.currentSort = FontListSvc.getFontSort();
   });

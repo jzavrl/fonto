@@ -4,6 +4,17 @@ angular.module('FontoApp')
 
     vm.fonts = {};
     vm.loading = true;
+    vm.sort = FontListSvc.getFontSort();
+    console.log(vm.sort);
+
+    vm.order = {
+      by: {
+        family: 'family'
+      },
+      direction: {
+        family: true
+      }
+    };
 
     FontListSvc.loadFonts({}, function (promise) {
       promise.then(function(fonts) {
@@ -15,6 +26,7 @@ angular.module('FontoApp')
         vm.loading = true;
       });
     });
+
 
     // FontListSvc.loadFontAPI('google', function(data) {
     //   fonts.families = data;
